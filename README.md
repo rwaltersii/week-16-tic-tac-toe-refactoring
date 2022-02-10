@@ -6,7 +6,7 @@ Tic - Tac - Toe Refactoring
 
 Take an assignment with a Tic-Tac-Toe game and refactor things about the game for improvements
 
-## Setup
+## Setup:
 
 npm install
 npm start
