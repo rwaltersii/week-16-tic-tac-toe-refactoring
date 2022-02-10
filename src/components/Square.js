@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Square = ({ takeTurn, id }) => {
-  const mark = ["O", "X", "+"];
+  const mark = ["O", "X", "?"];
   // id is the square's number
   // filled tells you if square has been filled
   // tik tells you symbol in square (same as player)
@@ -12,9 +12,7 @@ const Square = ({ takeTurn, id }) => {
   // Set a state for when the square should be disabled
   const [disabledSquare, setDisabledSquare] = useState(false);
 
-  let xoColor = mark[tik] == "X" ? "red" : "white";
-  //   console.log(`This is Player: ${mark[tik]}`);
-  console.log(xoColor);
+  let xoColor = mark[tik] == "X" ? "red" : mark[tik] == "O" ? "white" : "black";
 
   return (
     <button

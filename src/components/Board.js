@@ -1,3 +1,4 @@
+import { hasPointerEvents } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import Square from "./Square";
 
@@ -8,7 +9,10 @@ const Board = () => {
 
   const [gameState, setGameState] = React.useState([]);
 
-  let status = `Winner is ${checkForWinner(gameState)}`;
+  let status = `Winner: ${checkForWinner(gameState)}`;
+
+  let gameOver = status.includes("No Winner Yet");
+  let lockSquares = gameOver ? "grid-row canclick" : "grid-row noclick";
 
   // Part 1 step 1 code goes here
   // Use conditional logic to set a variable to either 'Player O' or  'Player X'
@@ -18,9 +22,6 @@ const Board = () => {
   } else {
     nextPlayer = "Player X";
   }
-  console.log(nextPlayer);
-
-  console.log(`We hav a winner ${status}`);
 
   const takeTurn = (id) => {
     setGameState([...gameState, { id: id, player: player }]);
@@ -35,24 +36,27 @@ const Board = () => {
 
   return (
     <div className="game-board">
-      <div className="grid-row">
+      <div className={lockSquares}>
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
       </div>
-      <div className="grid-row">
+      <div className={lockSquares}>
         {renderSquare(3)}
         {renderSquare(4)}
         {renderSquare(5)}
       </div>
-      <div className="grid-row">
+      <div className={lockSquares}>
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-      <div id="info">
+      <div className="info" id="info">
         <h1 id="turn">{`Next Player: ${nextPlayer}`}</h1>
         <h1>{status}</h1>
+        <button className="span" onClick={() => window.location.reload(false)}>
+          Reset Game
+        </button>
       </div>
     </div>
   );
@@ -75,12 +79,6 @@ const win = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-
-//******************************************************************
-
-const checkPlayerTurn = (gameState) => {
-  return gameState.player;
-};
 
 //******************************************************************
 
