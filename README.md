@@ -13,7 +13,7 @@ npm start
 
 ## Roadmap of Future Improvements:
 
-1.  Transfered the code from a standalone to a full React Application-
+1.  Transferred the code from a standalone to a full React Application-
     a. Used the npx create-react-app for the boiler plate application-
     b. Broke up the single jsx file into three separate js component files (App.js, Board.js, Square.js)-
 
